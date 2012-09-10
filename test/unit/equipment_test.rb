@@ -26,7 +26,7 @@ class EquipmentTest < ActiveSupport::TestCase
   test "equipment is not valid without a unique name" do
     equipment = Equipment.new( name: equipment(:pc).name )
     assert !equipment.save
-    assert_equal "has already been taken", equipment.errors[:name].join('; ')
+    assert_equal I18n.translate('activerecord.errors.messages.taken'), equipment.errors[:name].join('; ')
   end
 
 end
