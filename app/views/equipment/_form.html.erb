@@ -21,15 +21,15 @@
   </div>
   <div class="field">
     <%= f.label :purchase_date %><br />
-    <%= f.date_select :purchase_date %>
+    <%= f.date_select :purchase_date, :include_blank => true %>
   </div>
   <div class="field">
     <%= f.label :placement_date %><br />
-    <%= f.date_select :placement_date %>
+    <%= f.date_select :placement_date, :include_blank => true %>
   </div>
   <div class="field">
     <%= f.label :warranty_end_date %><br />
-    <%= f.date_select :warranty_end_date %>
+    <%= f.date_select :warranty_end_date, :include_blank => true %>
   </div>
   <div class="actions">
     <%= f.submit %>

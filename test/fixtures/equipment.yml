@@ -1,5 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
+pc:
+  name: 1030000
+  price: 4589.5
+  purchase_date: 2008-09-15
+  placement_date: 2011-05-10
+  warranty_end_date: 2013-09-10  
+  
 one:
   name: MyString
   price: 9.99

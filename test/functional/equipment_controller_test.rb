@@ -3,6 +3,13 @@ require 'test_helper'
 class EquipmentControllerTest < ActionController::TestCase
   setup do
     @equipment = equipment(:one)
+    @update = {
+      name: "1030001",
+      price: 5462.45,
+      purchase_date: "2012-09-10",
+      placement_date: "2012-09-10",
+      warranty_end_date: "2012-09-10"
+    }
   end
 
   test "should get index" do
@@ -18,7 +25,7 @@ class EquipmentControllerTest < ActionController::TestCase
 
   test "should create equipment" do
     assert_difference('Equipment.count') do
-      post :create, equipment: { name: @equipment.name, placement_date: @equipment.placement_date, price: @equipment.price, purchase_date: @equipment.purchase_date, warranty_end_date: @equipment.warranty_end_date }
+      post :create, equipment: @update
     end
 
     assert_redirected_to equipment_path(assigns(:equipment))
@@ -35,7 +42,7 @@ class EquipmentControllerTest < ActionController::TestCase
   end
 
   test "should update equipment" do
-    put :update, id: @equipment, equipment: { name: @equipment.name, placement_date: @equipment.placement_date, price: @equipment.price, purchase_date: @equipment.purchase_date, warranty_end_date: @equipment.warranty_end_date }
+    put :update, id: @equipment, equipment: @update
     assert_redirected_to equipment_path(assigns(:equipment))
   end
 
