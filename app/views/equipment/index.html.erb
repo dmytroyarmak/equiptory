@@ -1,0 +1,31 @@
+<h1>Listing equipment</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Purchase date</th>
+    <th>Placement date</th>
+    <th>Warranty end date</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @equipment.each do |equipment| %>
+  <tr>
+    <td><%= equipment.name %></td>
+    <td><%= equipment.price %></td>
+    <td><%= equipment.purchase_date %></td>
+    <td><%= equipment.placement_date %></td>
+    <td><%= equipment.warranty_end_date %></td>
+    <td><%= link_to 'Show', equipment %></td>
+    <td><%= link_to 'Edit', edit_equipment_path(equipment) %></td>
+    <td><%= link_to 'Destroy', equipment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Equipment', new_equipment_path %>

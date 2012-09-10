@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @equipment.name %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @equipment.price %>
+</p>
+
+<p>
+  <b>Purchase date:</b>
+  <%= @equipment.purchase_date %>
+</p>
+
+<p>
+  <b>Placement date:</b>
+  <%= @equipment.placement_date %>
+</p>
+
+<p>
+  <b>Warranty end date:</b>
+  <%= @equipment.warranty_end_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_equipment_path(@equipment) %> |
+<%= link_to 'Back', equipment_index_path %>

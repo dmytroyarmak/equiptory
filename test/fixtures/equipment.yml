@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  price: 9.99
+  purchase_date: 2012-09-10
+  placement_date: 2012-09-10
+  warranty_end_date: 2012-09-10
+
+two:
+  name: MyString
+  price: 9.99
+  purchase_date: 2012-09-10
+  placement_date: 2012-09-10
+  warranty_end_date: 2012-09-10
