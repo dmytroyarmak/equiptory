@@ -20,6 +20,10 @@
     <%= f.text_field :price %>
   </div>
   <div class="field">
+    <%= f.label :location_id %><br />
+    <%= collection_select(:equipment, :location_id, Location.all, :id, :name, :prompt => "Select Location") %>  
+  </div>
+  <div class="field">
     <%= f.label :purchase_date %><br />
     <%= f.date_select :purchase_date, :include_blank => true %>
   </div>

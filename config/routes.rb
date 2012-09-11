@@ -1,4 +1,6 @@
 Equiptory::Application.routes.draw do
+  resources :locations
+
   resources :equipment
 
   # The priority is based upon order of creation:
