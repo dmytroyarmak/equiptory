@@ -12,6 +12,12 @@
     </div>
   </div>
   <div class="control-group">
+    <%= f.label :type_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= collection_select(:equipment, :type_id, Type.all, :id, :name, {:prompt => "Select Type"}) %>
+    </div>
+  </div>  
+  <div class="control-group">
     <%= f.label :location_id, :class => 'control-label' %>
     <div class="controls">
       <%= collection_select(:equipment, :location_id, Location.all, :id, :name, {:prompt => "Select Location"}) %>
