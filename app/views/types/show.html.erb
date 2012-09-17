@@ -6,6 +6,12 @@
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @type.name %></dd>
+  <dt><strong>Attributes:</strong></dt>
+  <dd>
+    <% @type.attribute_types.each do |attribute_type| %>
+      <%= attribute_type.name %><br/>
+    <% end %>
+  </dd>
 </dl>
 
 <div class="form-actions">
