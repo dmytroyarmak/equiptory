@@ -5,22 +5,20 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @equipment.name %></dd>
+  <dd><%= @equipment.name||" - " %></dd>
   <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
-  <dd><%= @equipment.price %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:purchase_date) %>:</strong></dt>
-  <dd><%= @equipment.purchase_date %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:placement_date) %>:</strong></dt>
-  <dd><%= @equipment.placement_date %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:warranty_end_date) %>:</strong></dt>
-  <dd><%= @equipment.warranty_end_date %></dd>
+  <dd><%= @equipment.price||" - " %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:type_id) %>:</strong></dt>
+  <dd><%= @equipment.type_id ? @equipment.type.name : " - " %></dd>
   <dt><strong><%= model_class.human_attribute_name(:location_id) %>:</strong></dt>
-  <dd><%= @equipment.location_id %></dd>
+  <dd><%= @equipment.location_id ? @equipment.location.name : " - " %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:state_id) %>:</strong></dt>
+  <dd><%= @equipment.state_id ? @equipment.state.name : " - " %></dd>
 </dl>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              equipment_path, :class => 'btn'  %>
+              equipment_index_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_equipment_path(@equipment), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

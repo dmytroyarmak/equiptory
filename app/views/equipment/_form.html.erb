@@ -12,39 +12,27 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :location_id %>
+    <%= f.label :type_id, :class => 'control-label' %>
     <div class="controls">
-      <%= collection_select(:equipment, :location_id, Location.all, :id, :name, :prompt => "Select Location") %>       
+      <%= collection_select(:equipment, :type_id, Type.all, :id, :name, {:prompt => "Select Type"}) %>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :purchase_date, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.date_select :purchase_date, :class => 'date_select' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :placement_date, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.date_select :placement_date, :class => 'date_select' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :warranty_end_date, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.date_select :warranty_end_date, :class => 'date_select' %>
-    </div>
-  </div>
+  </div>  
   <div class="control-group">
     <%= f.label :location_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :location_id, :class => 'number_field' %>
+      <%= collection_select(:equipment, :location_id, Location.all, :id, :name, {:prompt => "Select Location"}) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :state_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= collection_select(:equipment, :state_id, State.all, :id, :name, {:prompt => "Select State"}) %>
     </div>
   </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                equipment_path, :class => 'btn' %>
+                equipment_index_path, :class => 'btn' %>
   </div>
 <% end %>

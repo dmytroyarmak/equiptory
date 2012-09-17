@@ -1,4 +1,4 @@
-<%- model_class = Equipment -%>
+<%- model_class = State -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
@@ -7,27 +7,21 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:price) %></th>
-      <th><%= model_class.human_attribute_name(:type_id) %></th>
-      <th><%= model_class.human_attribute_name(:location_id) %></th>
-      <th><%= model_class.human_attribute_name(:state_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
-    <% @equipment.each do |equipment| %>
+    <% @states.each do |state| %>
       <tr>
-        <td><%= link_to equipment.id, equipment_path(equipment) %></td>
-        <td><%= equipment.name %></td>
-        <td><%= equipment.price %></td>
-        <td><%= equipment.type.name if equipment.type_id %></td>
-        <td><%= equipment.location.name if equipment.location_id %></td>
-        <td><%= equipment.state.name if equipment.state_id %></td>
+        <td><%= link_to state.id, state_path(state) %></td>
+        <td><%= state.name %></td>
+        <td><%=l state.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_equipment_path(equipment), :class => 'btn btn-mini' %>
+                      edit_state_path(state), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      equipment_path(equipment),
+                      state_path(state),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>
@@ -38,5 +32,5 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_equipment_path,
+            new_state_path,
             :class => 'btn btn-primary' %>
