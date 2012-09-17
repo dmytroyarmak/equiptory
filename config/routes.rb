@@ -1,4 +1,6 @@
 Equiptory::Application.routes.draw do
+  resources :types
+
   resources :locations
 
   resources :equipment
