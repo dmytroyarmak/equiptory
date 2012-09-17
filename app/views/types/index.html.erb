@@ -7,7 +7,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th>Attributes</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -16,7 +16,7 @@
       <tr>
         <td><%= link_to type.id, type_path(type) %></td>
         <td><%= type.name %></td>
-        <td><%=l type.created_at %></td>
+        <td><%= type.attribute_types.map{|a| a.name}.join(', ') %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_type_path(type), :class => 'btn btn-mini' %>
