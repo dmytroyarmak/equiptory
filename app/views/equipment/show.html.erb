@@ -16,6 +16,14 @@
   <dd><%= @equipment.state_id ? @equipment.state.name : " - " %></dd>
 </dl>
 
+<h2>Additional attributes</h2>
+<dl class="dl-horizontal">
+  <% @equipment.attribute_values.each do |e| %>
+  <dt><strong><%= e.attribute_type.name %>:</strong></dt>
+  <dd><%= e.value.blank? ? "-" : e.value %></dd>
+  <% end %>
+</dl>
+
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               equipment_index_path, :class => 'btn'  %>
