@@ -25,6 +25,7 @@ class EquipmentController < ApplicationController
   # GET /equipment/new.json
   def new
     @equipment = Equipment.new
+    @equipment.attribute_values.new(AttributeType.all.map { |e| {attribute_type_id: e.id} })
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +36,9 @@ class EquipmentController < ApplicationController
   # GET /equipment/1/edit
   def edit
     @equipment = Equipment.find(params[:id])
+    all_attr = AttributeType.all.map { |e| {attribute_type_id: e.id} }
+    all_attr.delete_if {|e| @equipment.attribute_values.any? { |x| x[:attribute_type_id] == e[:attribute_type_id]}}
+    @equipment.attribute_values.new(all_attr)
   end
 
   # POST /equipment
