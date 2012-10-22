@@ -25,6 +25,8 @@ class EquipmentController < ApplicationController
   # GET /equipment/new.json
   def new
     @equipment = Equipment.new
+    all_attr = AttributeType.all
+    @equipment.attribute_values.new(AttributeType.all.map { |e| {attribute_type_id: e.id} })
 
     respond_to do |format|
       format.html # new.html.erb

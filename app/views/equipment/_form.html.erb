@@ -29,8 +29,11 @@
       <%= collection_select(:equipment, :state_id, State.all, :id, :name, {:prompt => "Select State"}) %>
     </div>
   </div>
-  <%= f.fields_for :attribute_values do |builder| %>
-    <%= render 'attribute_value_fields', f: builder  %>
+  <h2>Additional attributes</h2>
+  <% @equipment.attribute_values.each do |attribute_value| %>
+    <%= f.fields_for :attribute_values, attribute_value do |builder| %>
+      <%= render 'attribute_value_fields', f: builder, attribute_value: attribute_value  %>
+    <% end %>
   <% end %>
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
