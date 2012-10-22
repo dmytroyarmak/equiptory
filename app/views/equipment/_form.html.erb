@@ -29,7 +29,9 @@
       <%= collection_select(:equipment, :state_id, State.all, :id, :name, {:prompt => "Select State"}) %>
     </div>
   </div>
-
+  <%= f.fields_for :attribute_types do |builder| %>
+    <%= render 'attribute_value_fields', f: builder  %>
+  <% end %>
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
