@@ -5,7 +5,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -13,8 +12,7 @@
   <tbody>
     <% @locations.each do |location| %>
       <tr>
-        <td><%= link_to location.id, location_path(location) %></td>
-        <td><%= location.name %></td>
+        <td><%= link_to location.name, location_path(location) %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_location_path(location), :class => 'btn btn-mini' %>
