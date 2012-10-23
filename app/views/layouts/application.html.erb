@@ -34,6 +34,12 @@
 
 
   <div class="container">
+    <% flash.each do |name, msg| %>
+    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+      <a href="#" class="close" data-dismiss="alert">×</a>
+      <%= msg %>
+    </div>
+    <% end %>
     <div class="row">
       <div class="span12"><%= yield %></div>
     </div>
