@@ -31,8 +31,10 @@
   </div>
   <h2>Additional attributes</h2>
   <% @equipment.attribute_values.each do |attribute_value| %>
-    <%= f.fields_for :attribute_values, attribute_value do |builder| %>
-      <%= render 'attribute_value_fields', f: builder, attribute_value: attribute_value  %>
+    <% unless attribute_value.attribute_type.type.nil? %>
+      <%= f.fields_for :attribute_values, attribute_value do |builder| %>
+        <%= render 'attribute_value_fields', f: builder, attribute_value: attribute_value, type_id: attribute_value.attribute_type.type_id, selected_type_id: @equipment.type_id  %>
+      <% end %>
     <% end %>
   <% end %>
   <div class="form-actions">
