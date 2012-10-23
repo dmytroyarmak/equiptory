@@ -73,11 +73,17 @@ class TypesController < ApplicationController
   # DELETE /types/1.json
   def destroy
     @type = Type.find(params[:id])
-    @type.destroy
-
-    respond_to do |format|
-      format.html { redirect_to types_url }
-      format.json { head :no_content }
+    begin
+      @type.destroy
+      flash[:success] = "Type was successfully destroyed." 
+    rescue ActiveRecord::DeleteRestrictionError => e
+      @type.errors.add(:base, e)
+      flash[:error] = "#{e}"
+    ensure
+      respond_to do |format|
+        format.html { redirect_to types_url }
+        format.json { head :no_content }
+      end      
     end
   end
 end

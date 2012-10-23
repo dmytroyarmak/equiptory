@@ -1,29 +1,41 @@
 <%= form_for @equipment, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
+  <div class="control-group <%= "error" unless @equipment.errors[:name].blank? %>">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :name, :class => 'text_field' %>
+      <% if @equipment.errors[:name] %>
+        <% @equipment.errors[:name].each do |msg| %>
+          <span class="help-inline"><%= msg %></span><br>
+        <% end %>
+      <% end %>
     </div>
   </div>
-  <div class="control-group">
+
+  <div class="control-group <%= "error" unless @equipment.errors[:price].blank? %>">
     <%= f.label :price, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :price, :class => 'text_field' %>
+      <% if @equipment.errors[:price] %>
+        <% @equipment.errors[:price].each do |msg| %>
+          <span class="help-inline"><%= msg %></span><br>
+        <% end %>
+      <% end %>
     </div>
   </div>
-  <div class="control-group">
+
+  <div class="control-group  <%= "error" unless @equipment.errors[:type_id].blank? %>">
     <%= f.label :type_id, :class => 'control-label' %>
     <div class="controls">
       <%= collection_select(:equipment, :type_id, Type.all, :id, :name, {:prompt => "Select Type"}) %>
     </div>
   </div>  
-  <div class="control-group">
+  <div class="control-group  <%= "error" unless @equipment.errors[:location_id].blank? %>">
     <%= f.label :location_id, :class => 'control-label' %>
     <div class="controls">
       <%= collection_select(:equipment, :location_id, Location.all, :id, :name, {:prompt => "Select Location"}) %>
     </div>
   </div>
-  <div class="control-group">
+  <div class="control-group  <%= "error" unless @equipment.errors[:state_id].blank? %>">
     <%= f.label :state_id, :class => 'control-label' %>
     <div class="controls">
       <%= collection_select(:equipment, :state_id, State.all, :id, :name, {:prompt => "Select State"}) %>

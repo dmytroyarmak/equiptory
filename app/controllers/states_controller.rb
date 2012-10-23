@@ -73,11 +73,17 @@ class StatesController < ApplicationController
   # DELETE /states/1.json
   def destroy
     @state = State.find(params[:id])
-    @state.destroy
-
-    respond_to do |format|
-      format.html { redirect_to states_url }
-      format.json { head :no_content }
+    begin
+      @state.destroy
+      flash[:success] = "State was successfully destroyed." 
+    rescue ActiveRecord::DeleteRestrictionError => e
+      @state.errors.add(:base, e)
+      flash[:error] = "#{e}"
+    ensure
+      respond_to do |format|
+        format.html { redirect_to states_url }
+        format.json { head :no_content }
+      end      
     end
   end
 end
