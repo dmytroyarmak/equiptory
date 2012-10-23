@@ -51,6 +51,9 @@ class EquipmentController < ApplicationController
         format.html { redirect_to @equipment, notice: 'Equipment was successfully created.' }
         format.json { render json: @equipment, status: :created, location: @equipment }
       else
+        all_attr = AttributeType.all.map { |e| {attribute_type_id: e.id} }
+        all_attr.delete_if {|e| @equipment.attribute_values.any? { |x| x[:attribute_type_id] == e[:attribute_type_id]}}
+        @equipment.attribute_values.new(all_attr)
         format.html { render action: "new" }
         format.json { render json: @equipment.errors, status: :unprocessable_entity }
       end

@@ -5,15 +5,15 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @equipment.name||" - " %></dd>
+  <dd><%= @equipment.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
   <dd><%= @equipment.price||" - " %></dd>
   <dt><strong><%= model_class.human_attribute_name(:type_id) %>:</strong></dt>
-  <dd><%= @equipment.type_id ? @equipment.type.name : " - " %></dd>
+  <dd><%= @equipment.type.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:location_id) %>:</strong></dt>
-  <dd><%= @equipment.location_id ? @equipment.location.name : " - " %></dd>
+  <dd><%= @equipment.location.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:state_id) %>:</strong></dt>
-  <dd><%= @equipment.state_id ? @equipment.state.name : " - " %></dd>
+  <dd><%= @equipment.state.name %></dd>
 </dl>
 
 <h2>Additional attributes</h2>

@@ -44,7 +44,7 @@ class TypesController < ApplicationController
 
     respond_to do |format|
       if @type.save
-        format.html { redirect_to @type, notice: 'Type was successfully created.' }
+        format.html { redirect_to types_url, notice: 'Type was successfully created.' }
         format.json { render json: @type, status: :created, location: @type }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class TypesController < ApplicationController
 
     respond_to do |format|
       if @type.update_attributes(params[:type])
-        format.html { redirect_to @type, notice: 'Type was successfully updated.' }
+        format.html { redirect_to types_url, notice: 'Type was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -73,11 +73,17 @@ class TypesController < ApplicationController
   # DELETE /types/1.json
   def destroy
     @type = Type.find(params[:id])
-    @type.destroy
-
-    respond_to do |format|
-      format.html { redirect_to types_url }
-      format.json { head :no_content }
+    begin
+      @type.destroy
+      flash[:success] = "Type was successfully destroyed." 
+    rescue ActiveRecord::DeleteRestrictionError => e
+      @type.errors.add(:base, e)
+      flash[:error] = "#{e}"
+    ensure
+      respond_to do |format|
+        format.html { redirect_to types_url }
+        format.json { head :no_content }
+      end      
     end
   end
 end

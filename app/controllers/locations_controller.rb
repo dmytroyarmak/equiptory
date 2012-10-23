@@ -44,7 +44,7 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to @location, notice: 'Location was successfully created.' }
+        format.html { redirect_to locations_url, notice: 'Location was successfully created.' }
         format.json { render json: @location, status: :created, location: @location }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.update_attributes(params[:location])
-        format.html { redirect_to @location, notice: 'Location was successfully updated.' }
+        format.html { redirect_to locations_url, notice: 'Location was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -73,11 +73,17 @@ class LocationsController < ApplicationController
   # DELETE /locations/1.json
   def destroy
     @location = Location.find(params[:id])
-    @location.destroy
-
-    respond_to do |format|
-      format.html { redirect_to locations_url }
-      format.json { head :no_content }
+    begin
+      @location.destroy
+      flash[:success] = "Location was successfully destroyed." 
+    rescue ActiveRecord::DeleteRestrictionError => e
+      @location.errors.add(:base, e)
+      flash[:error] = "#{e}"
+    ensure
+      respond_to do |format|
+        format.html { redirect_to locations_url }
+        format.json { head :no_content }
+      end      
     end
   end
 end

@@ -1,4 +1,4 @@
-<div class="control-group additional_attribute type-<%= attribute_value.attribute_type.type.id %>">
+<div style="display: <%= type_id == selected_type_id ? "block" : "none" %>;" class="control-group additional_attribute type-<%= type_id %>">
   <%= f.label :value, attribute_value.attribute_type.name,:class => 'control-label' %>
   <div class="controls">
     <%= f.hidden_field :id %>
