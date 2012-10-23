@@ -5,7 +5,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th>Attributes</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -14,8 +13,7 @@
   <tbody>
     <% @types.each do |type| %>
       <tr>
-        <td><%= link_to type.id, type_path(type) %></td>
-        <td><%= type.name %></td>
+        <td><%= link_to type.name, type_path(type) %></td>
         <td><%= type.attribute_types.map{|a| a.name}.join(', ') %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

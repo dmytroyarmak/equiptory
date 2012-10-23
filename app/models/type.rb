@@ -3,4 +3,5 @@ class Type < ActiveRecord::Base
   has_many :equipment
   has_many :attribute_types
   accepts_nested_attributes_for :attribute_types, allow_destroy: true
+  validates :name, :presence => true
 end
