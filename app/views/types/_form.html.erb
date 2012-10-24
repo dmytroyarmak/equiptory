@@ -11,14 +11,14 @@
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label">Attributes</label>
+    <label class="control-label"><%= t 'activerecord.attributes.type.attributes' %></label>
   </div>
   <%= f.fields_for :attribute_types do |builder| %>
     <%= render 'attribute_type_fields', f: builder  %>
   <% end %>
   <div class="control-group">  
     <div class="controls">
-      <%= link_to_add_fields 'Add Attribute', f, :attribute_types %>      
+      <%= link_to_add_fields 'Додати атрибут', f, :attribute_types %>      
     </div>
   </div>
 

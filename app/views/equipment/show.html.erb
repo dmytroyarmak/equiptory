@@ -7,7 +7,7 @@
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @equipment.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
-  <dd><%= @equipment.price||" - " %></dd>
+  <dd><%= number_to_currency(@equipment.price)||" - " %></dd>
   <dt><strong><%= model_class.human_attribute_name(:type_id) %>:</strong></dt>
   <dd><%= @equipment.type.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:location_id) %>:</strong></dt>
@@ -16,7 +16,7 @@
   <dd><%= @equipment.state.name %></dd>
 </dl>
 
-<h2>Additional attributes</h2>
+<h2><%= t 'equipment.additional_attributes' %></h2>
 <dl class="dl-horizontal">
   <% @equipment.attribute_values.each do |e| %>
   <dt><strong><%= e.attribute_type.name %>:</strong></dt>

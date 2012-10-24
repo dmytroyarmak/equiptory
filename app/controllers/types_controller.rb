@@ -1,3 +1,5 @@
+#!/bin/env ruby
+# encoding: utf-8
 class TypesController < ApplicationController
   # GET /types
   # GET /types.json
@@ -44,7 +46,7 @@ class TypesController < ApplicationController
 
     respond_to do |format|
       if @type.save
-        format.html { redirect_to types_url, notice: 'Type was successfully created.' }
+        format.html { redirect_to types_url, notice: 'Тип обладнання успішно створено.' }
         format.json { render json: @type, status: :created, location: @type }
       else
         format.html { render action: "new" }
@@ -60,7 +62,7 @@ class TypesController < ApplicationController
 
     respond_to do |format|
       if @type.update_attributes(params[:type])
-        format.html { redirect_to types_url, notice: 'Type was successfully updated.' }
+        format.html { redirect_to types_url, notice: 'Тип обладнання успішно оновлено.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -75,10 +77,10 @@ class TypesController < ApplicationController
     @type = Type.find(params[:id])
     begin
       @type.destroy
-      flash[:success] = "Type was successfully destroyed." 
+      flash[:success] = "Тип обладнання успішно видалено." 
     rescue ActiveRecord::DeleteRestrictionError => e
       @type.errors.add(:base, e)
-      flash[:error] = "#{e}"
+      flash[:error] = "Місце розташування не може бути видалено тому, що існує звязане обладнання"
     ensure
       respond_to do |format|
         format.html { redirect_to types_url }

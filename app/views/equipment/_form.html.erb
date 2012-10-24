@@ -26,22 +26,22 @@
   <div class="control-group  <%= "error" unless @equipment.errors[:type_id].blank? %>">
     <%= f.label :type_id, :class => 'control-label' %>
     <div class="controls">
-      <%= collection_select(:equipment, :type_id, Type.all, :id, :name, {:prompt => "Select Type"}) %>
+      <%= collection_select(:equipment, :type_id, Type.all, :id, :name, {:prompt => "Виберіть тип"}) %>
     </div>
   </div>  
   <div class="control-group  <%= "error" unless @equipment.errors[:location_id].blank? %>">
     <%= f.label :location_id, :class => 'control-label' %>
     <div class="controls">
-      <%= collection_select(:equipment, :location_id, Location.all, :id, :name, {:prompt => "Select Location"}) %>
+      <%= collection_select(:equipment, :location_id, Location.all, :id, :name, {:prompt => "Виберіть розташування"}) %>
     </div>
   </div>
   <div class="control-group  <%= "error" unless @equipment.errors[:state_id].blank? %>">
     <%= f.label :state_id, :class => 'control-label' %>
     <div class="controls">
-      <%= collection_select(:equipment, :state_id, State.all, :id, :name, {:prompt => "Select State"}) %>
+      <%= collection_select(:equipment, :state_id, State.all, :id, :name, {:prompt => "Виберіть стан"}) %>
     </div>
   </div>
-  <h2>Additional attributes</h2>
+  <h2><%= t 'equipment.additional_attributes' %></h2>
   <% @equipment.attribute_values.each do |attribute_value| %>
     <% unless attribute_value.attribute_type.type.nil? %>
       <%= f.fields_for :attribute_values, attribute_value do |builder| %>

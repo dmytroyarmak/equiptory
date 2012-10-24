@@ -1,3 +1,5 @@
+#!/bin/env ruby
+# encoding: utf-8
 class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
@@ -44,7 +46,7 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to locations_url, notice: 'Location was successfully created.' }
+        format.html { redirect_to locations_url, notice: 'Місце розташування успішно створено.' }
         format.json { render json: @location, status: :created, location: @location }
       else
         format.html { render action: "new" }
@@ -60,7 +62,7 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.update_attributes(params[:location])
-        format.html { redirect_to locations_url, notice: 'Location was successfully updated.' }
+        format.html { redirect_to locations_url, notice: 'Місце розташування успішно оновлено.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -75,10 +77,10 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     begin
       @location.destroy
-      flash[:success] = "Location was successfully destroyed." 
+      flash[:success] = "Місце розташування успішно видалено." 
     rescue ActiveRecord::DeleteRestrictionError => e
       @location.errors.add(:base, e)
-      flash[:error] = "#{e}"
+      flash[:error] = "Місце розташування не може бути видалено тому, що існує звязане обладнання"
     ensure
       respond_to do |format|
         format.html { redirect_to locations_url }

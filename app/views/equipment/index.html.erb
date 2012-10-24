@@ -1,6 +1,6 @@
 <%- model_class = Equipment -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
 <table class="table table-striped">
   <thead>
@@ -17,7 +17,7 @@
     <% @equipment.each do |equipment| %>
       <tr>
         <td><%= link_to equipment.name, equipment_path(equipment) %></td>
-        <td><%= equipment.price %></td>
+        <td><%= number_to_currency(equipment.price) %></td>
         <td><%= equipment.type.name if equipment.type_id %></td>
         <td><%= equipment.location.name if equipment.location_id %></td>
         <td><%= equipment.state.name if equipment.state_id %></td>

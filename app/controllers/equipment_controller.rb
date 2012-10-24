@@ -1,3 +1,5 @@
+#!/bin/env ruby
+# encoding: utf-8
 class EquipmentController < ApplicationController
   # GET /equipment
   # GET /equipment.json
@@ -48,7 +50,7 @@ class EquipmentController < ApplicationController
 
     respond_to do |format|
       if @equipment.save
-        format.html { redirect_to @equipment, notice: 'Equipment was successfully created.' }
+        format.html { redirect_to @equipment, notice: 'Обладнання успішно стровено.' }
         format.json { render json: @equipment, status: :created, location: @equipment }
       else
         all_attr = AttributeType.all.map { |e| {attribute_type_id: e.id} }
@@ -67,7 +69,7 @@ class EquipmentController < ApplicationController
 
     respond_to do |format|
       if @equipment.update_attributes(params[:equipment])
-        format.html { redirect_to @equipment, notice: 'Equipment was successfully updated.' }
+        format.html { redirect_to @equipment, notice: 'Обладнення успішно оновлено.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
