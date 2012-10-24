@@ -1,3 +1,5 @@
+#!/bin/env ruby
+# encoding: utf-8
 class StatesController < ApplicationController
   # GET /states
   # GET /states.json
@@ -44,7 +46,7 @@ class StatesController < ApplicationController
 
     respond_to do |format|
       if @state.save
-        format.html { redirect_to states_url, notice: 'State was successfully created.' }
+        format.html { redirect_to states_url, notice: 'Стан обладнання успішно створено.' }
         format.json { render json: @state, status: :created, location: @state }
       else
         format.html { render action: "new" }
@@ -60,7 +62,7 @@ class StatesController < ApplicationController
 
     respond_to do |format|
       if @state.update_attributes(params[:state])
-        format.html { redirect_to states_url, notice: 'State was successfully updated.' }
+        format.html { redirect_to states_url, notice: 'Стан обладнання успішно оновлено.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -75,10 +77,10 @@ class StatesController < ApplicationController
     @state = State.find(params[:id])
     begin
       @state.destroy
-      flash[:success] = "State was successfully destroyed." 
+      flash[:success] = "Стан обладнання успішно видалено." 
     rescue ActiveRecord::DeleteRestrictionError => e
       @state.errors.add(:base, e)
-      flash[:error] = "#{e}"
+      flash[:error] = "Місце розташування не може бути видалено тому, що існує звязане "+e.message.split.last
     ensure
       respond_to do |format|
         format.html { redirect_to states_url }
