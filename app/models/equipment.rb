@@ -6,4 +6,5 @@ class Equipment < ActiveRecord::Base
   belongs_to :type
   belongs_to :state
   validates :name, :location_id, :type_id, :state_id, :presence => true
+  validates :price, :numericality => {:greater_than_or_equal_to => 0.01}, :allow_blank => true
 end
