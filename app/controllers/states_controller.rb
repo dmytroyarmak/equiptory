@@ -80,7 +80,7 @@ class StatesController < ApplicationController
       flash[:success] = "Стан обладнання успішно видалено." 
     rescue ActiveRecord::DeleteRestrictionError => e
       @state.errors.add(:base, e)
-      flash[:error] = "Місце розташування не може бути видалено тому, що існує звязане "+e.message.split.last
+      flash[:error] = "Місце розташування не може бути видалено тому, що існує звязане обладнання"
     ensure
       respond_to do |format|
         format.html { redirect_to states_url }

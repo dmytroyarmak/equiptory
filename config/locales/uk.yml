@@ -171,6 +171,14 @@ uk:
       create: Створити %{model}
       submit: Зберегти %{model}
       update: Зберегти %{model}
+    actions: Дії
+    links:
+      edit: Редагувати
+      destroy: Видалити
+      new: Додати
+      confirm: Ви впевнені?
+      back: Назад
+      cancel: Відміна
   number:
     currency:
       format:
@@ -257,5 +265,29 @@ uk:
     errors:
       <<: *errors
   activerecord:
+    models:
+      equipment: Обладнання
+      location: Місце розташування
+      state: Технічний стан
+      type: Тип обладнання
+      attribute_type: Тип атрибуту
+      attribute_value: Значення атрибуту
+    attributes:
+      equipment:
+        name: Ідентифікатор
+        price: Ціна
+        type_id: Тип обладнання
+        location_id: Місце розташування
+        state_id: Технічний стан 
     errors:
       <<: *errors
+  equipment:
+    additional_attributes: Додаткові атрибути
+    index:
+      title: Список наявного обладнання
+    new:
+      title: Створення нового обладнання
+    edit:
+      title: Редагування обладнання
+    show:
+      title: Детальна інформація про обладнання
