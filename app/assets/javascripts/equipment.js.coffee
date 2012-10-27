@@ -8,3 +8,5 @@ jQuery ->
     $('.type-'+$(this).val()).show()
       .find('.destroy').val('0')
   .change()
+
+  $(".date_picker").datepicker({"format": "dd.mm.yyyy", "weekStart": 1, "startView" : 2, "autoclose": true, "language": "uk" })

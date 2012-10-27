@@ -1,3 +1,5 @@
+#!/bin/env ruby
+# encoding: utf-8
 class Equipment < ActiveRecord::Base
   attr_accessible :name, :price, :location_id, :type_id, :state_id, :attribute_values_attributes, :purchase_date, :placement_date, :warranty_end_date
   has_many :attribute_values, :dependent => :destroy
@@ -6,5 +8,6 @@ class Equipment < ActiveRecord::Base
   belongs_to :type
   belongs_to :state
   validates :name, :location_id, :type_id, :state_id, :presence => true
+  validates :name, :uniqueness => true
   validates :price, :numericality => {:greater_than_or_equal_to => 0.01}, :allow_blank => true
 end
