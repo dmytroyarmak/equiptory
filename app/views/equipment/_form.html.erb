@@ -49,6 +49,17 @@
       <% end %>
     <% end %>
   <% end %>
+  <div class="control-group <%= "error" unless @equipment.errors[:placement_date].blank? %>">
+    <%= f.label :placement_date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :placement_date, :class => 'text_field' %>
+      <% if @equipment.errors[:placement_date] %>
+        <% @equipment.errors[:placement_date].each do |msg| %>
+          <span class="help-inline"><%= msg %></span><br>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
