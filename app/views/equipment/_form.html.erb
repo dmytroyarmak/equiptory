@@ -14,7 +14,10 @@
   <div class="control-group <%= "error" unless @equipment.errors[:price].blank? %>">
     <%= f.label :price, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :price, :class => 'text_field' %>
+      <div class="input-append">
+        <%= f.text_field :price, :class => 'text_field' %>
+        <span class="add-on">грн.</span>
+      </div>
       <% if @equipment.errors[:price] %>
         <% @equipment.errors[:price].each do |msg| %>
           <span class="help-inline"><%= msg %></span><br>
@@ -39,6 +42,48 @@
     <%= f.label :state_id, :class => 'control-label' %>
     <div class="controls">
       <%= collection_select(:equipment, :state_id, State.all, :id, :name, {:prompt => "Виберіть стан"}) %>
+    </div>
+  </div>
+  <div class="control-group <%= "error" unless @equipment.errors[:placement_date].blank? %>">
+    <%= f.label :placement_date, :class => 'control-label' %>
+    <div class="controls">
+      <div class="input-append">
+        <%= f.text_field :placement_date, :class => 'date_picker', :value => (l(@equipment.placement_date) unless @equipment.placement_date.nil?) %>
+        <span class="add-on"><i class="icon-calendar"></i></span>  
+      </div>
+      <% if @equipment.errors[:placement_date] %>
+        <% @equipment.errors[:placement_date].each do |msg| %>
+          <span class="help-inline"><%= msg %></span><br>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="control-group <%= "error" unless @equipment.errors[:purchase_date].blank? %>">
+    <%= f.label :purchase_date, :class => 'control-label' %>
+    <div class="controls">
+      <div class="input-append">
+        <%= f.text_field :purchase_date, :class => 'date_picker', :value => (l(@equipment.purchase_date) unless @equipment.purchase_date.nil?) %>
+        <span class="add-on"><i class="icon-calendar"></i></span>  
+      </div>
+      <% if @equipment.errors[:purchase_date] %>
+        <% @equipment.errors[:purchase_date].each do |msg| %>
+          <span class="help-inline"><%= msg %></span><br>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="control-group <%= "error" unless @equipment.errors[:warranty_end_date].blank? %>">
+    <%= f.label :warranty_end_date, :class => 'control-label' %>
+    <div class="controls">
+      <div class="input-append">
+        <%= f.text_field :warranty_end_date, :class => 'date_picker', :value => (l(@equipment.warranty_end_date) unless @equipment.warranty_end_date.nil?) %>
+        <span class="add-on"><i class="icon-calendar"></i></span>  
+      </div>
+      <% if @equipment.errors[:warranty_end_date] %>
+        <% @equipment.errors[:warranty_end_date].each do |msg| %>
+          <span class="help-inline"><%= msg %></span><br>
+        <% end %>
+      <% end %>
     </div>
   </div>
   <h2><%= t 'equipment.additional_attributes' %></h2>

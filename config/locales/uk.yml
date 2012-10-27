@@ -279,6 +279,9 @@ uk:
         type_id: Тип обладнання
         location_id: Місце розташування
         state_id: Технічний стан
+        placement_date: Дата встановлення
+        purchase_date: Дата покупки
+        warranty_end_date: Кінець гарантії
       state:
         name: Назва
       location:
