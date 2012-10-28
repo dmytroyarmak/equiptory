@@ -2,7 +2,7 @@
   <div class="control-group <%= "error" unless @equipment.errors[:name].blank? %>">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
+      <%= f.text_field :name, :disabled => @from_maintenance, :class => 'text_field' %>
       <% if @equipment.errors[:name] %>
         <% @equipment.errors[:name].each do |msg| %>
           <span class="help-inline"><%= msg %></span><br>
@@ -15,7 +15,7 @@
     <%= f.label :price, :class => 'control-label' %>
     <div class="controls">
       <div class="input-append">
-        <%= f.text_field :price, :class => 'text_field' %>
+        <%= f.text_field :price, :disabled => @from_maintenance, :class => 'text_field' %>
         <span class="add-on">грн.</span>
       </div>
       <% if @equipment.errors[:price] %>
@@ -29,7 +29,7 @@
   <div class="control-group  <%= "error" unless @equipment.errors[:type_id].blank? %>">
     <%= f.label :type_id, :class => 'control-label' %>
     <div class="controls">
-      <%= collection_select(:equipment, :type_id, Type.all, :id, :name, {:prompt => "Виберіть тип"}) %>
+      <%= select_tag "equipment[type_id]", options_from_collection_for_select(Type.all,'id', "name", @equipment.type_id), {:name => 'equipment[type_id]', :disabled => @from_maintenance, :prompt => "Виберіть тип"} %>
     </div>
   </div>  
   <div class="control-group  <%= "error" unless @equipment.errors[:location_id].blank? %>">
@@ -48,7 +48,7 @@
     <%= f.label :placement_date, :class => 'control-label' %>
     <div class="controls">
       <div class="input-append">
-        <%= f.text_field :placement_date, :class => 'date_picker', :value => (l(@equipment.placement_date) unless @equipment.placement_date.nil?) %>
+        <%= f.text_field :placement_date, :class => 'date_picker', :disabled => @from_maintenance, :value => (l(@equipment.placement_date) unless @equipment.placement_date.nil?) %>
         <span class="add-on"><i class="icon-calendar"></i></span>  
       </div>
       <% if @equipment.errors[:placement_date] %>
@@ -62,7 +62,7 @@
     <%= f.label :purchase_date, :class => 'control-label' %>
     <div class="controls">
       <div class="input-append">
-        <%= f.text_field :purchase_date, :class => 'date_picker', :value => (l(@equipment.purchase_date) unless @equipment.purchase_date.nil?) %>
+        <%= f.text_field :purchase_date, :class => 'date_picker', :disabled => @from_maintenance, :value => (l(@equipment.purchase_date) unless @equipment.purchase_date.nil?) %>
         <span class="add-on"><i class="icon-calendar"></i></span>  
       </div>
       <% if @equipment.errors[:purchase_date] %>
@@ -76,7 +76,7 @@
     <%= f.label :warranty_end_date, :class => 'control-label' %>
     <div class="controls">
       <div class="input-append">
-        <%= f.text_field :warranty_end_date, :class => 'date_picker', :value => (l(@equipment.warranty_end_date) unless @equipment.warranty_end_date.nil?) %>
+        <%= f.text_field :warranty_end_date, :class => 'date_picker', :disabled => @from_maintenance, :value => (l(@equipment.warranty_end_date) unless @equipment.warranty_end_date.nil?) %>
         <span class="add-on"><i class="icon-calendar"></i></span>  
       </div>
       <% if @equipment.errors[:warranty_end_date] %>
@@ -95,8 +95,9 @@
     <% end %>
   <% end %>
   <div class="form-actions">
+    <% # Troilk's changes%>
+    <%= hidden_field_tag "maintenance" if(@from_maintenance) %>
     <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                equipment_index_path, :class => 'btn' %>
+    <%= @from_maintenance ? "" : (link_to t('.cancel', :default => t("helpers.links.cancel")), equipment_index_path, :class => 'btn') %>
   </div>
 <% end %>

@@ -37,6 +37,8 @@ class EquipmentController < ApplicationController
 
   # GET /equipment/1/edit
   def edit
+    @from_maintenance = params.has_key?(:maintenance) ? true : false
+    
     @equipment = Equipment.find(params[:id])
     all_attr = AttributeType.all.map { |e| {attribute_type_id: e.id} }
     all_attr.delete_if {|e| @equipment.attribute_values.any? { |x| x[:attribute_type_id] == e[:attribute_type_id]}}
@@ -65,11 +67,23 @@ class EquipmentController < ApplicationController
   # PUT /equipment/1
   # PUT /equipment/1.json
   def update
+    #Troilk's code
+    redir = true
+    if params.has_key?(:maintenance)
+        redir = false
+        (session[:maintenance_changes] ||= []) << params[:id]
+      end
+    #
+
     @equipment = Equipment.find(params[:id])
 
     respond_to do |format|
       if @equipment.update_attributes(params[:equipment])
-        format.html { redirect_to @equipment, notice: 'Обладнення успішно оновлено.' }
+        if redir
+          format.html { redirect_to @equipment, notice: 'Обладнення успішно оновлено.' }
+        else
+          format.html { redirect_to edit_equipment_path(:maintenance => true), notice: 'Обладнення успішно оновлено.' }
+        end
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

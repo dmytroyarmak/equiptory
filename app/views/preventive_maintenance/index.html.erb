@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h1><%=t '.title', :default => 'Профілактика' %></h1>
+</div>
+<%= form_tag(:controller => "preventive_maintenance", :action => "start", :method => "post", :class => "form-horizontal") do %>
+<table class="table table-striped">
+  <tbody>
+    <tr>
+      <td>
+        <%= t('.tester', :default => t("helpers.links.tester")) %>
+      </td>
+      <td>
+        <%= select_tag("tester", option_tags = nil, {:prompt => "Виберіть відповільного" }) %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+  	    <%= t('.location', :default => t("helpers.links.location")) %>
+      </td>
+      <td>
+        <%= select_tag "location", options_from_collection_for_select(@locations,'id', "name"), {:name => :location, :prompt => "Виберіть місце" } %>
+      </td>
+      <tr>
+        <td colspan='2'><%= submit_tag t('.start', :default => t("helpers.links.start")), :class => 'btn btn-primary' %></td>
+      </tr>
+    </tr>
+  </tbody>
+</table>
+<% end %>
