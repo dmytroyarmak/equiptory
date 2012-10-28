@@ -28,14 +28,6 @@ ActiveRecord::Schema.define(:version => 20121027072213) do
     t.datetime "updated_at",        :null => false
   end
 
-  create_table "attributes", :force => true do |t|
-    t.integer "equipment_id"
-    t.string "value"
-    t.integer "attribute_type_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "equipment", :force => true do |t|
     t.string   "name"
     t.decimal  "price",             :precision => 8, :scale => 2
