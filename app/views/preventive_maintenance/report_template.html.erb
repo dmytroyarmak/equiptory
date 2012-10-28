@@ -1,0 +1,70 @@
+<div>
+  <h1><%=t 'preventive_maintenance.report.title', :default => 'Звіт по профілактиці' %></h1>
+</div>
+<table style="width: 50%;">
+  <tbody>
+    <tr>
+      <td>
+        <%= t('preventive_maintenance.report.tester', :default => t("helpers.links.tester")) %>
+      </td>
+      <td style="width: 30%">
+        <%= tester %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= t('preventive_maintenance.report.start_datetime', :default => t("helpers.links.start_datetime")) %>
+      </td>
+      <td>
+        <%= l start_time, :format => :short %>
+      </td>
+    </tr>
+     <tr>
+      <td>
+        <%= t('preventive_maintenance.report.end_datetime', :default => t("helpers.links.end_datetime")) %>
+      </td>
+      <td>
+        <%= l Time.now, :format => :short %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+  	    <%= t('preventive_maintenance.report.location', :default => t("helpers.links.location")) %>
+      </td>
+      <td>
+        <%= location.name %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= t('preventive_maintenance.report.state_changed', :default => t("helpers.links.state_changed")) %>
+      </td>
+      <td>
+        <%= changes.nil? ? '0' : changes.length %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+  <h3><%= t('preventive_maintenance.report.equipment_in_loc', :default => t("helpers.links.equipment_in_loc")) %></h3>
+<table style="width: 90%; border-style: solid; border-width: 1px">
+  <thead>
+    <tr>
+      <th style="text-align: left"><%= Equipment.human_attribute_name(:name) %></th>
+      <th style="text-align: left"><%= Equipment.human_attribute_name(:type_id) %></th>
+      <th style="text-align: left"><%= Equipment.human_attribute_name(:state_id) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% equipment.each do |equip| %>
+      <tr <%= 'style=\'background-color: #99CCFF\''  if(!changes.nil? && changes.include?(equip.id.to_s))  %>>
+        <td><%= equip.name %></td>
+        <td><%= equip.type.name if equip.type_id %></td>
+        <td><%= equip.state.name if equip.state_id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% if(!notes.nil?) %>
+  <h3><%= t('preventive_maintenance.report.notes', :default => t("helpers.links.notes")) %></h3>
+  <p><%= notes %></p>
+<% end %>

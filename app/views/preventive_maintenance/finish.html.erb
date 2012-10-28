@@ -1,0 +1,12 @@
+<%- model_class = Equipment -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => 'Звіт по профілактиці' %></h1>
+</div>
+<h3><%= t('.message', :default => t("helpers.links.message")) %></h3><br>
+<%= link_to t('.save_as_html', :default => t("helpers.links.save_as_html")),
+    @report_html, :target => '_blank', :class => 'btn btn-primary' %>
+<%= link_to t('.save_as_pdf', :default => t("helpers.links.save_as_pdf")),
+    @report_pdf, :class => 'btn btn-primary' %>
+
+
+
