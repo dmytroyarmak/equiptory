@@ -1,41 +1,25 @@
 <%- model_class = Equipment -%>
+<% content_for :sidebar do %>
+  <div class="well">
+    <h3>Пошук обладнання</h3>
+    <%= form_tag equipment_index_path, :method => 'get' do %>
+      <%= hidden_field_tag :sort, params[:sort] %>
+      <%= hidden_field_tag :direction, params[:direction] %>
+      <%= label_tag :search, model_class.human_attribute_name(:name), :class => 'control-label' %>
+      <%= text_field_tag :search, params[:search] %>
+      <%= label_tag :type, model_class.human_attribute_name(:type_id), :class => 'control-label' %>
+      <%= select_tag "type", options_from_collection_for_select(Type.all, "id", "name", params[:type].to_i), :prompt => "Виберіть тип" %>
+      <%= label_tag :location, model_class.human_attribute_name(:location_id), :class => 'control-label' %>
+      <%= select_tag "location", options_from_collection_for_select(Location.all, "id", "name", params[:location].to_i), :prompt => "Виберіть розташування" %>
+      <%= label_tag :state, model_class.human_attribute_name(:state_id), :class => 'control-label' %>
+      <%= select_tag "state", options_from_collection_for_select(State.all, "id", "name", params[:state].to_i), :prompt => "Виберіть стан" %>  
+      <%= submit_tag "Пошук", :name => nil %>
+    <% end %>
+  </div>
+<% end %>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
-
-<%= form_tag equipment_index_path, :method => 'get', :class => "form-horizontal" do %>
-  <%= hidden_field_tag :sort, params[:sort] %>
-  <%= hidden_field_tag :direction, params[:direction] %>
-  <div class="control-group">
-    <%= label_tag :search, model_class.human_attribute_name(:name), :class => 'control-label' %>
-    <div class="controls">
-      <%= text_field_tag :search, params[:search] %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= label_tag :type, model_class.human_attribute_name(:type_id), :class => 'control-label' %>
-    <div class="controls">
-      <%= select_tag "type", options_from_collection_for_select(Type.all, "id", "name", params[:type].to_i), :prompt => "Виберіть тип" %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= label_tag :location, model_class.human_attribute_name(:location_id), :class => 'control-label' %>
-    <div class="controls">
-      <%= select_tag "location_id", options_from_collection_for_select(Location.all, "id", "name", params[:location].to_i), :prompt => "Виберіть розташування" %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= label_tag :state, model_class.human_attribute_name(:state_id), :class => 'control-label' %>
-    <div class="controls">
-      <%= select_tag "state", options_from_collection_for_select(State.all, "id", "name", params[:state].to_i), :prompt => "Виберіть стан" %>
-    </div>
-  </div>  
-  <div class="control-group">
-    <div class="controls">
-      <%= submit_tag "Пошук", :name => nil %>
-    </div>
-  </div>
-<% end %>
 
 <table class="table table-striped">
   <thead>
