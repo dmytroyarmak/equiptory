@@ -7,4 +7,13 @@ module ApplicationHelper
     end
     link_to(name, '#', class: "add_fields btn btn-primary", data: {id: id, fields: fields.gsub("\n", "")})
   end
+
+  def sortable (column, title = nil)
+    title ||= column.titleize
+    direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
+    if column == sort_column
+      title = "#{title} <i class='#{direction == "desc" ? "icon-chevron-down" : "icon-chevron-up"}'></i>".html_safe
+    end
+    link_to title, params.merge(:sort => column, :direction => direction, :page => nil)
+  end
 end

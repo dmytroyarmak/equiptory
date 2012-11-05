@@ -10,4 +10,16 @@ class Equipment < ActiveRecord::Base
   validates :name, :location_id, :type_id, :state_id, :presence => true
   validates :name, :uniqueness => true
   validates :price, :numericality => {:greater_than_or_equal_to => 0.01}, :allow_blank => true
+
+  def self.search(search, type = nil, location = nil, state = nil)
+    if search
+      res = self.where('name LIKE ?', "%#{search}%")
+      res = res.where('type_id = ?', type) unless type.blank?
+      res = res.where('location_id = ?', location) unless location.blank?
+      res = res.where('state_id = ?', state) unless state.blank?
+      res
+    else
+      scoped
+    end
+  end
 end

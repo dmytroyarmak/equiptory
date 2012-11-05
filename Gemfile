@@ -39,3 +39,4 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-will_paginate'
