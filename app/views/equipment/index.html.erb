@@ -33,6 +33,8 @@
   </tbody>
 </table>
 
+<%= will_paginate @equipment %>
+
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_equipment_path,
             :class => 'btn btn-primary' %>
