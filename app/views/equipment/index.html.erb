@@ -5,11 +5,10 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:price) %></th>
-      <th><%= model_class.human_attribute_name(:type_id) %></th>
-      <th><%= model_class.human_attribute_name(:location_id) %></th>
-      <th><%= model_class.human_attribute_name(:state_id) %></th>
+      <th><%= sortable "name", model_class.human_attribute_name(:name) %></th>
+      <th><%= sortable "type_id", model_class.human_attribute_name(:type_id) %></th>
+      <th><%= sortable "location_id", model_class.human_attribute_name(:location_id) %></th>
+      <th><%= sortable "state_id", model_class.human_attribute_name(:state_id) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -17,7 +16,6 @@
     <% @equipment.each do |equipment| %>
       <tr>
         <td><%= link_to equipment.name, equipment_path(equipment) %></td>
-        <td><%= number_to_currency(equipment.price) %></td>
         <td><%= equipment.type.name if equipment.type_id %></td>
         <td><%= equipment.location.name if equipment.location_id %></td>
         <td><%= equipment.state.name if equipment.state_id %></td>

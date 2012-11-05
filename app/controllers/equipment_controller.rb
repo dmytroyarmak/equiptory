@@ -1,10 +1,11 @@
 #!/bin/env ruby
 # encoding: utf-8
 class EquipmentController < ApplicationController
+  helper_method :sort_column, :sort_direction
   # GET /equipment
   # GET /equipment.json
   def index
-    @equipment = Equipment.all
+    @equipment = Equipment.order(sort_column + " " + sort_direction)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -88,5 +89,13 @@ class EquipmentController < ApplicationController
       format.html { redirect_to equipment_index_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def sort_column
+    Equipment.column_names.include?(params[:sort]) ? params[:sort] : "name"    
+  end
+  def sort_direction
+    %w[acs desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end
