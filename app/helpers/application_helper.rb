@@ -14,6 +14,6 @@ module ApplicationHelper
     if column == sort_column
       title = "#{title} <i class='#{direction == "desc" ? "icon-chevron-down" : "icon-chevron-up"}'></i>".html_safe
     end
-    link_to title, sort: column, direction: direction
+    link_to title, params.merge(:sort => column, :direction => direction, :page => nil)
   end
 end
