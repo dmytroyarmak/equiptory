@@ -5,7 +5,11 @@ Equiptory::Application.routes.draw do
 
   resources :locations
 
-  resources :equipment
+  resources :equipment do
+    member do
+      get 'copy'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

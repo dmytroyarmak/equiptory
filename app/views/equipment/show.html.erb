@@ -35,6 +35,8 @@
               equipment_index_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_equipment_path(@equipment), :class => 'btn' %>
+  <%= link_to t('.copy', :default => t("helpers.links.copy")),
+              copy_equipment_path(@equipment), :class => 'btn btn-info' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               equipment_path(@equipment),
               :method => 'delete',

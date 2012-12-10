@@ -91,6 +91,22 @@ class EquipmentController < ApplicationController
     end
   end
 
+  # GET /equipment/1/copy
+  def copy
+    original_equipment = Equipment.find(params[:id])
+    @equipment = original_equipment.dup
+    @equipment.name.clear
+    @equipment.attribute_values << original_equipment.attribute_values.collect { |attribute_value| attribute_value.dup }
+    all_attr = AttributeType.all.map { |e| {attribute_type_id: e.id} }
+    all_attr.delete_if {|e| @equipment.attribute_values.any? { |x| x[:attribute_type_id] == e[:attribute_type_id]}}
+    @equipment.attribute_values.new(all_attr)
+
+    respond_to do |format|
+      format.html { render action: "new" } # new.html.erb
+      format.json { render json: @equipment }
+    end
+  end
+
   private
   def sort_column
     Equipment.column_names.include?(params[:sort]) ? params[:sort] : "name"    

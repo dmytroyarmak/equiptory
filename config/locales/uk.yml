@@ -179,6 +179,7 @@ uk:
       confirm: Ви впевнені?
       back: Назад
       cancel: Відміна
+      copy: Копіювати
   number:
     currency:
       format:
