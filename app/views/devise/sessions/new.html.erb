@@ -1,0 +1,16 @@
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-signin' }) do |f| %>
+  <h2 class="form-signin-heading">Авторизація</h2>
+  <% flash.each do |name, msg| %>
+    <div class="alert alert-error"><%= msg %></div>
+  <% end %>
+
+  <%= f.email_field :email, :class => 'input-block-level', placeholder: 'Email' %>
+  <%= f.password_field :password, :class => 'input-block-level', placeholder: 'Пароль'  %>
+  <% if devise_mapping.rememberable? -%>
+    <label for="user_remember_me" class="checkbox">
+      <%= f.check_box :remember_me %> Запам’ятати мене
+    </label>
+  <% end -%>
+  <%= f.submit "Ввійти", :class => 'btn btn-large btn-primary' %>
+<% end %>
+<%= render "devise/shared/links" %>

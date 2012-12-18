@@ -41,6 +41,14 @@
       <div class="content">
         <div class="row">
             <div class="span3">
+              <div class="well">
+                <% if user_signed_in? %>
+                  Ви ввійшли як <strong><%= current_user.email %></strong>. <br>
+                  <%= link_to 'Вийти', destroy_user_session_path, :method => :delete %>
+                <% else %>
+                  <%= link_to 'Ввійти', new_user_session_path %>
+                <% end %>
+              </div>
               <%= yield :sidebar %>
               <div class="well sidebar-nav">
                 <h3>Навігація</h3>

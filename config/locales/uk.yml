@@ -290,6 +290,10 @@ uk:
       type:
         name: Назва
         attributes: Атрибути
+      user:
+        email: Email
+        password: Пароль
+        password_confirmation: Підтвердження пароля
     errors:
       <<: *errors
   equipment:
