@@ -294,6 +294,9 @@ uk:
         email: Email
         password: Пароль
         password_confirmation: Підтвердження пароля
+        first_name: Ім’я
+        last_name: Прізвище
+        role_id: Права
     errors:
       <<: *errors
   equipment:
@@ -333,6 +336,15 @@ uk:
       title: Редагування типу обладнання
     show:
       title: Тип обладнання
+  users:
+    index:
+      title: Список користувачів
+    new:
+      title: Створення нового користувача
+    edit:
+      title: Редагування користувача
+    show:
+      title: Користувач
   will_paginate:
     previous_label: "&#8592; Назад"
     next_label: "Вперед &#8594;"

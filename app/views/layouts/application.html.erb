@@ -31,6 +31,7 @@
               <li><%= link_to "Місця розташування", locations_path %></li>
               <li><%= link_to "Типи обладнання", types_path %></li>
               <li><%= link_to "Технічні стани", states_path %></li>
+              <li><%= link_to "Користувачі", users_path %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -44,6 +45,7 @@
               <div class="well">
                 <% if user_signed_in? %>
                   Ви ввійшли як <strong><%= current_user.email %></strong>. <br>
+                  Права: <%=  current_user.role %> <br>
                   <%= link_to 'Вийти', destroy_user_session_path, :method => :delete %>
                 <% else %>
                   <%= link_to 'Ввійти', new_user_session_path %>
@@ -57,6 +59,7 @@
                   <li><%= link_to "Місця розташування", locations_path %></li>
                   <li><%= link_to "Типи обладнання", types_path %></li>
                   <li><%= link_to "Технічні стани", states_path %></li>
+                  <li><%= link_to "Користувачі", users_path %></li>
                 </ul>
               </div><!--/.well -->
             </div><!--/span-->
