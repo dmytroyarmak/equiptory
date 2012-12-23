@@ -27,10 +27,21 @@
           <a class="brand" href="/">Equiptory</a>
           <div class="container nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Обладнання", equipment_index_path %></li>
-              <li><%= link_to "Місця розташування", locations_path %></li>
-              <li><%= link_to "Типи обладнання", types_path %></li>
-              <li><%= link_to "Технічні стани", states_path %></li>
+              <% if can? :read, Equipment %>
+                <li><%= link_to "Обладнання", equipment_index_path %></li>
+              <% end %>
+              <% if can? :read, Location %>
+                <li><%= link_to "Місця розташування", locations_path %></li>
+              <% end %>
+              <% if can? :read, Type %>
+                <li><%= link_to "Типи обладнання", types_path %></li>
+              <% end %>
+              <% if can? :read, State %>
+                <li><%= link_to "Технічні стани", states_path %></li>
+              <% end %>
+              <% if can? :read, User %>
+                <li><%= link_to "Користувачі", users_path %></li>
+              <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -41,14 +52,34 @@
       <div class="content">
         <div class="row">
             <div class="span3">
+              <div class="well">
+                <% if user_signed_in? %>
+                  Ви ввійшли як <strong><%= current_user.email %></strong>. <br>
+                  Права: <%=  current_user.role %> <br>
+                  <%= link_to 'Вийти', destroy_user_session_path, :method => :delete %>
+                <% else %>
+                  <%= link_to 'Ввійти', new_user_session_path %>
+                <% end %>
+              </div>
               <%= yield :sidebar %>
               <div class="well sidebar-nav">
                 <h3>Навігація</h3>
                 <ul class="nav nav-list">
-                  <li><%= link_to "Обладнання", equipment_index_path %></li>
-                  <li><%= link_to "Місця розташування", locations_path %></li>
-                  <li><%= link_to "Типи обладнання", types_path %></li>
-                  <li><%= link_to "Технічні стани", states_path %></li>
+                  <% if can? :read, Equipment %>
+                    <li><%= link_to "Обладнання", equipment_index_path %></li>
+                  <% end %>
+                  <% if can? :read, Location %>
+                    <li><%= link_to "Місця розташування", locations_path %></li>
+                  <% end %>
+                  <% if can? :read, Type %>
+                    <li><%= link_to "Типи обладнання", types_path %></li>
+                  <% end %>
+                  <% if can? :read, State %>
+                    <li><%= link_to "Технічні стани", states_path %></li>
+                  <% end %>
+                  <% if can? :read, User %>
+                    <li><%= link_to "Користувачі", users_path %></li>
+                  <% end %>
                 </ul>
               </div><!--/.well -->
             </div><!--/span-->

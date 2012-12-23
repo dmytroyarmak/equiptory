@@ -28,7 +28,9 @@
       <th><%= sortable "type_id", model_class.human_attribute_name(:type_id) %></th>
       <th><%= sortable "location_id", model_class.human_attribute_name(:location_id) %></th>
       <th><%= sortable "state_id", model_class.human_attribute_name(:state_id) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <% if ( (can? :update, Equipment ) || (can? :destroy, Equipment) ) %>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -40,12 +42,12 @@
         <td><%= equipment.state.name if equipment.state_id %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_equipment_path(equipment), :class => 'btn btn-mini' %>
+                      edit_equipment_path(equipment), :class => 'btn btn-mini' if can? :update, Equipment %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       equipment_path(equipment),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
+                      :class => 'btn btn-mini btn-danger' if can? :destroy, Equipment%>
         </td>
       </tr>
     <% end %>
@@ -56,4 +58,4 @@
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_equipment_path,
-            :class => 'btn btn-primary' %>
+            :class => 'btn btn-primary' if can? :create, Equipment%>

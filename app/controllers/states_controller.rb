@@ -1,6 +1,7 @@
 #!/bin/env ruby
 # encoding: utf-8
 class StatesController < ApplicationController
+  load_and_authorize_resource
   # GET /states
   # GET /states.json
   def index
