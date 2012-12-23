@@ -1,0 +1,9 @@
+<div style="display: <%= type_id == selected_type_id ? "block" : "none" %>;" class="control-group additional_attribute type-<%= type_id %>">
+  <%= f.label :value, attribute_value.attribute_type.name,:class => 'control-label' %>
+  <div class="controls">
+    <%= f.hidden_field :id %>
+    <%= f.hidden_field :attribute_type_id %>
+    <%= f.text_field :value %>
+    <%= f.hidden_field :_destroy, value: 1, :class => "destroy" %>
+  </div>
+</div>

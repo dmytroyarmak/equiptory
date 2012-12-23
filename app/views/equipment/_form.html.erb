@@ -1,0 +1,102 @@
+<%= form_for @equipment, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group <%= "error" unless @equipment.errors[:name].blank? %>">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
+      <% if @equipment.errors[:name] %>
+        <% @equipment.errors[:name].each do |msg| %>
+          <span class="help-inline"><%= msg %></span><br>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="control-group <%= "error" unless @equipment.errors[:price].blank? %>">
+    <%= f.label :price, :class => 'control-label' %>
+    <div class="controls">
+      <div class="input-append">
+        <%= f.text_field :price, :class => 'text_field' %>
+        <span class="add-on">грн.</span>
+      </div>
+      <% if @equipment.errors[:price] %>
+        <% @equipment.errors[:price].each do |msg| %>
+          <span class="help-inline"><%= msg %></span><br>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="control-group  <%= "error" unless @equipment.errors[:type_id].blank? %>">
+    <%= f.label :type_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= collection_select(:equipment, :type_id, Type.all, :id, :name, {:prompt => "Виберіть тип"}) %>
+    </div>
+  </div>  
+  <div class="control-group  <%= "error" unless @equipment.errors[:location_id].blank? %>">
+    <%= f.label :location_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= collection_select(:equipment, :location_id, Location.all, :id, :name, {:prompt => "Виберіть розташування"}) %>
+    </div>
+  </div>
+  <div class="control-group  <%= "error" unless @equipment.errors[:state_id].blank? %>">
+    <%= f.label :state_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= collection_select(:equipment, :state_id, State.all, :id, :name, {:prompt => "Виберіть стан"}) %>
+    </div>
+  </div>
+  <div class="control-group <%= "error" unless @equipment.errors[:placement_date].blank? %>">
+    <%= f.label :placement_date, :class => 'control-label' %>
+    <div class="controls">
+      <div class="input-append">
+        <%= f.text_field :placement_date, :class => 'date_picker', :value => (l(@equipment.placement_date) unless @equipment.placement_date.nil?) %>
+        <span class="add-on"><i class="icon-calendar"></i></span>  
+      </div>
+      <% if @equipment.errors[:placement_date] %>
+        <% @equipment.errors[:placement_date].each do |msg| %>
+          <span class="help-inline"><%= msg %></span><br>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="control-group <%= "error" unless @equipment.errors[:purchase_date].blank? %>">
+    <%= f.label :purchase_date, :class => 'control-label' %>
+    <div class="controls">
+      <div class="input-append">
+        <%= f.text_field :purchase_date, :class => 'date_picker', :value => (l(@equipment.purchase_date) unless @equipment.purchase_date.nil?) %>
+        <span class="add-on"><i class="icon-calendar"></i></span>  
+      </div>
+      <% if @equipment.errors[:purchase_date] %>
+        <% @equipment.errors[:purchase_date].each do |msg| %>
+          <span class="help-inline"><%= msg %></span><br>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="control-group <%= "error" unless @equipment.errors[:warranty_end_date].blank? %>">
+    <%= f.label :warranty_end_date, :class => 'control-label' %>
+    <div class="controls">
+      <div class="input-append">
+        <%= f.text_field :warranty_end_date, :class => 'date_picker', :value => (l(@equipment.warranty_end_date) unless @equipment.warranty_end_date.nil?) %>
+        <span class="add-on"><i class="icon-calendar"></i></span>  
+      </div>
+      <% if @equipment.errors[:warranty_end_date] %>
+        <% @equipment.errors[:warranty_end_date].each do |msg| %>
+          <span class="help-inline"><%= msg %></span><br>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <h2><%= t 'equipment.additional_attributes' %></h2>
+  <% @equipment.attribute_values.each do |attribute_value| %>
+    <% unless attribute_value.attribute_type.type.nil? %>
+      <%= f.fields_for :attribute_values, attribute_value do |builder| %>
+        <%= render 'attribute_value_fields', f: builder, attribute_value: attribute_value, type_id: attribute_value.attribute_type.type_id, selected_type_id: @equipment.type_id  %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                equipment_index_path, :class => 'btn' %>
+  </div>
+<% end %>
