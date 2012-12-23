@@ -349,3 +349,6 @@ uk:
     previous_label: "&#8592; Назад"
     next_label: "Вперед &#8594;"
     page_gap: "&hellip;"
+  unauthorized:
+    manage:
+      all: "Доступ заборонено!"

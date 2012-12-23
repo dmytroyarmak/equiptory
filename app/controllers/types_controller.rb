@@ -1,6 +1,7 @@
 #!/bin/env ruby
 # encoding: utf-8
 class TypesController < ApplicationController
+  load_and_authorize_resource
   # GET /types
   # GET /types.json
   def index
