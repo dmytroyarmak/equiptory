@@ -23,6 +23,7 @@
 # #     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
 # #   end
 # # end
+require "rvm/capistrano"
 require "bundler/capistrano"
 
 server "10.18.18.245", :web, :app, :db, primary: true
