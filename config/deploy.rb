@@ -34,7 +34,7 @@ set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm, "git"
-set :repository, "git@github.com:dmytroyarmak/#{application}.git"
+set :repository, "https://github.com/dmytroyarmak/#{application}.git"
 set :branch, "master"
 
 default_run_options[:pty] = true
